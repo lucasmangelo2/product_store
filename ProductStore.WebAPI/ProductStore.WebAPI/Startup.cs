@@ -8,6 +8,7 @@ using ProductStore.Data.Context;
 using ProductStore.Ioc;
 using ProductStore.WebAPI.Infra;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Serialization;
 
 namespace ProductStore.WebAPI
 {
@@ -22,7 +23,12 @@ namespace ProductStore.WebAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(options => {
+                    options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                }); ;
 
             services.AddDbContext<ProductStoreContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PSContext"), b => b.MigrationsAssembly("ProductStore.WebAPI")));
 

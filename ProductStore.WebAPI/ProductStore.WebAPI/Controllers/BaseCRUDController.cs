@@ -32,7 +32,7 @@ namespace ProductStore.WebAPI.Controllers
         [HttpGet("{id}")]
         public async virtual Task<IActionResult> GetByIdAsync(int id)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var obj = _mapper.Map<TResponse>(await _business.GetByIdAsync(id));
@@ -42,7 +42,7 @@ namespace ProductStore.WebAPI.Controllers
         [HttpPost]
         public async virtual Task<IActionResult> InsertASync([FromBody] TRequest request)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var model = _mapper.Map<TModel>(request);
@@ -55,7 +55,7 @@ namespace ProductStore.WebAPI.Controllers
         [HttpPut]
         public async virtual Task<IActionResult> UpdateASync(int id, [FromBody] TRequest request)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var model = _mapper.Map<TModel>(request);
@@ -68,7 +68,7 @@ namespace ProductStore.WebAPI.Controllers
         [HttpDelete("{id}")]
         public async virtual Task<IActionResult> DeleteAsync(int id)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             return Ok(await _business.DeleteAsync(id));

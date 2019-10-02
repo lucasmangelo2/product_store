@@ -19,7 +19,7 @@ namespace ProductStore.Model
         public string Description { get; set; }
 
         [Column("CATEGORIA_PAI_ID"), MaxLength(50)]
-        public int CategoryFatherId { get; set; }
+        public int? CategoryFatherId { get; set; }
 
         #region Navitagions
 
