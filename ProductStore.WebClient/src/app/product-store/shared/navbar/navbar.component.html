@@ -1,0 +1,5 @@
+<ul class="nav justify-content-end">
+    <li class="nav-item" *ngFor="let route of routes">
+        <a class="nav-link " [routerLinkActive]="['active']" [routerLink]="route.path"> {{route.data.title}} </a>
+    </li>
+</ul>

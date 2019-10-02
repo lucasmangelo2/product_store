@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Route } from '@angular/router';
+import { routes } from './app-routing.module';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ProductStore';
+
+  routes: Route[];
+
+  constructor(){
+    this.routes = routes;
+  }
 }
